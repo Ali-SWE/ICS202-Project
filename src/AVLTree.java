@@ -50,7 +50,8 @@ public class AVLTree<T extends Comparable<T>> extends BST<T> {
     }
     
     public void deleteAVL(T el) {
-      // to be completed by students
+      super.deleteByCopying(el);
+      this.balance();
 	  
     }
     
@@ -101,8 +102,19 @@ public class AVLTree<T extends Comparable<T>> extends BST<T> {
    }
     
    protected void rotateRight() {
-	  System.out.println("RIGHT ROTATION");
-      // to be completed by students	
+      if( isEmpty()) throw new UnsupportedOperationException("Empty") ;
+      BTNode<T> temp = root.right;
+      root.right = root.left;
+      root.left = root.right.left;
+      root.right.left = root.right.right;
+      root.right.right= temp;
+
+      T val = (T)root.data;
+      root.data = root.right.data;
+      root.right.data =val;
+
+      getRightAVL().adjustHeight();
+      adjustHeight();  
    }
     
    protected void rotateLeft() {
@@ -132,8 +144,10 @@ public class AVLTree<T extends Comparable<T>> extends BST<T> {
 
    protected void rotateRightLeft()
    {
-	   System.out.println("Double Rotation...");
-      // to be completed by students
+      getRightAVL().rotateRight();
+      getRightAVL().adjustHeight();
+      this.rotateLeft();
+      this.adjustHeight();
 	  
    }
    
