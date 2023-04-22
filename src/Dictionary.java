@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.Scanner;
 
 public class Dictionary {
@@ -18,7 +20,9 @@ public class Dictionary {
         this.tree = new AVLTree<>();
         try(Scanner fileScanner = new Scanner(file)){
             while(fileScanner.hasNext()){
-                tree.insertAVL(fileScanner.next());
+                String word = fileScanner.next();
+                if(!tree.search(word))
+                    tree.insertAVL(word);
             }
             System.out.println("\ndictionary loaded successfully.");
         }
@@ -60,10 +64,26 @@ public class Dictionary {
 
     // }
 
-    // public void saveFile( File? fileName? Dictionary object? ){ txt file? binary? 
-        
-    //     System.out.println("Dictionary saved successfully.");
-    // }
+    public void saveFile(String fileName){ 
+        File newFile = new File(fileName);
+        try(PrintWriter writer = new PrintWriter(newFile)){
+
+            writeDictionaryInFile(tree.root, writer);
+            System.out.println("Dictionary saved successfully.");
+        }
+        catch(FileNotFoundException ex){
+            System.out.println(ex);
+        }
+    }
+
+    private void writeDictionaryInFile(BTNode node,PrintWriter writer){ 
+        if (node == null) 
+            return; 
+  
+        writeDictionaryInFile(node.left, writer); 
+        writer.println(node.data);
+        writeDictionaryInFile(node.right, writer); 
+    } 
 
 
 }

@@ -47,6 +47,7 @@ public class AVLTree<T extends Comparable<T>> extends BST<T> {
     public void insertAVL(T el)  {
       super.insert(el);
       this.balance();
+      
     }
     
     public void deleteAVL(T el) {

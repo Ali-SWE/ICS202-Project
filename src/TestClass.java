@@ -6,11 +6,11 @@ public class TestClass {
     public static void main(String[] args) throws Exception{
         // Asking for the filename
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter filename> ");
-        String fileName = input.next();
+        // System.out.print("Enter filename> ");
+        // String fileName = input.next();
         
         // creating the dictionary
-        Dictionary dictionary = new Dictionary(new File(fileName));
+        Dictionary dictionary = new Dictionary(new File("mydictionary.txt"));
 
         boolean saved = false;
         // Suggesting operations
@@ -36,7 +36,11 @@ public class TestClass {
 
             else if(option == 3){ // Searching for a word
                 System.out.print("check word> ");
-                dictionary.findWord(input.next());
+                boolean found = dictionary.findWord(input.next());
+                if(found)
+                    System.out.println("Word found. ");
+                else
+                    System.out.println("Word not found. ");
             }
 
             else if(option == 4){ // Searching for similar words
@@ -46,7 +50,7 @@ public class TestClass {
 
             else if(option == 5){ // Save
                 System.out.print("Enter filename> ");
-                // dictionary.saveFile(input.next());
+                dictionary.saveFile(input.next());
                 saved = true;
             }
 
@@ -56,7 +60,7 @@ public class TestClass {
                     String choice = input.next();
                     if(choice.equals("Y")){
                         System.out.print("Enter filename> ");
-                        // dictionary.saveFile(input.next());
+                        dictionary.saveFile(input.next());
                     }
                     else if(choice.equals("N"))
                         break;
