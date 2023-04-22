@@ -12,46 +12,63 @@ public class TestClass {
         // creating the dictionary
         Dictionary dictionary = new Dictionary(new File(fileName));
 
+        boolean saved = false;
         // Suggesting operations
-        while(true){ // keep asking the user choose to save the file or exit
+        while(true){ // keep asking until the user chooses to save the file or exit
             System.out.println("Type the number of the operation you want to do:");
-            System.out.print("1. Adding a word into the dictionary.");
-            System.out.print("2. Deleting a word from the dictionary.");
-            System.out.print("3. Searching for a word in the dictionary.");
-            System.out.print("4. Searching for similar words to a specific word.");
-            System.out.print("5. Save.");
-            System.out.print("6. Exit.");
+            System.out.println("1. Adding a word into the dictionary.");
+            System.out.println("2. Deleting a word from the dictionary.");
+            System.out.println("3. Searching for a word in the dictionary.");
+            System.out.println("4. Searching for similar words to a specific word.");
+            System.out.println("5. Save.");
+            System.out.println("6. Exit.");
             int option = input.nextInt();
 
             if(option == 1){ // Adding a word
-
+                System.out.print("add new word> ");
+                dictionary.addWord(input.next());
             }
             
             else if(option == 2){ // Deleting a word
-
+                System.out.print("remove word>  ");
+                dictionary.deleteWord(input.next());
             }
 
             else if(option == 3){ // Searching for a word
-            
+                System.out.print("check word> ");
+                dictionary.findWord(input.next());
             }
 
             else if(option == 4){ // Searching for similar words
-
+                System.out.print("search for similar words>  ");
+                // dictionary.findSimilar(input.next());
             }
 
             else if(option == 5){ // Save
-
+                System.out.print("Enter filename> ");
+                // dictionary.saveFile(input.next());
+                saved = true;
             }
 
             else if(option == 6){ // Exit
-                ///
-                ///
-                ///
+                if(!saved){
+                    System.out.println("Save Updated Dictionary (Y/N)> ");
+                    String choice = input.next();
+                    if(choice.equals("Y")){
+                        System.out.print("Enter filename> ");
+                        // dictionary.saveFile(input.next());
+                    }
+                    else if(choice.equals("N"))
+                        break;
+                    else{
+                        System.out.println("Wrong input. Please, choose a valid option.");
+                    }
+                }
                 break;
             }
 
             else{ // wrong option
-
+                System.out.println("Please choose a valid option.");
             }
         }
 

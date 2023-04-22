@@ -67,8 +67,8 @@ public class AVLTree<T extends Comparable<T>> extends BST<T> {
          int balanceFactor = getBalanceFactor();
         
          if(balanceFactor == -2) {
-			System.out.println("Balance factor = " + balanceFactor);
-			System.out.println("Balancing node with el: "+root.data);
+			// System.out.println("Balance factor = " + balanceFactor);
+			// System.out.println("Balancing node with el: "+root.data);
 			
 			
 			if(getRightAVL().getBalanceFactor() == 0 && getLeftAVL().getBalanceFactor() == -1)    /// special case
@@ -80,8 +80,8 @@ public class AVLTree<T extends Comparable<T>> extends BST<T> {
          }
 		
          else if(balanceFactor == 2) {
-			System.out.println("Balance factor = " + balanceFactor);
-            System.out.println("Balancing node with el: "+root.data);
+			// System.out.println("Balance factor = " + balanceFactor);
+         //    System.out.println("Balancing node with el: "+root.data);
 			
 			if(getRightAVL().getBalanceFactor() == 0)         /// special case that cannot be done
 				  rotateLeft();                                /// by double rotations
@@ -118,7 +118,6 @@ public class AVLTree<T extends Comparable<T>> extends BST<T> {
    }
     
    protected void rotateLeft() {
- 	  System.out.println("LEFT ROTATION");
       BTNode<T> tempNode = root.left;
       root.left = root.right;
       root.right = root.left.right;
@@ -135,7 +134,6 @@ public class AVLTree<T extends Comparable<T>> extends BST<T> {
 	
 	protected void rotateLeftRight()
    {
-      System.out.println("Double Rotation...");
  	  getLeftAVL().rotateLeft();
       getLeftAVL().adjustHeight();
       this.rotateRight();

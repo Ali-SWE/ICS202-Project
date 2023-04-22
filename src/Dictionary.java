@@ -56,8 +56,13 @@ public class Dictionary {
         }
     }
 
-    // public void saveFile( File? fileName? Dictionary object? ){ txt file? binary? 
+    // public String[] findSimilar(String s){
 
+    // }
+
+    // public void saveFile( File? fileName? Dictionary object? ){ txt file? binary? 
+        
+    //     System.out.println("Dictionary saved successfully.");
     // }
 
 
