@@ -16,19 +16,16 @@ public class Dictionary {
         tree.insertAVL(string);
     }
     
-    public Dictionary(File file){ // This constructor creates an AVL tree with nodes containing the words in a file.
+    public Dictionary(File file) throws Exception{ // This constructor creates an AVL tree with nodes containing the words in a file.
         this.tree = new AVLTree<>();
-        try(Scanner fileScanner = new Scanner(file)){
-            while(fileScanner.hasNext()){
-                String word = fileScanner.next();
-                if(!tree.search(word))
-                    tree.insertAVL(word);
-            }
-            System.out.println("\ndictionary loaded successfully.");
+        Scanner fileScanner = new Scanner(file);
+        while(fileScanner.hasNext()){
+            String word = fileScanner.next();
+            if(!tree.search(word))
+                tree.insertAVL(word);
         }
-        catch(FileNotFoundException ex){
-            System.out.println(ex);
-        }
+        System.out.println("\ndictionary loaded successfully.");
+        
     }
 
     public void addWord(String s) throws WordAlreadyExistsException{
@@ -77,16 +74,23 @@ public class Dictionary {
             return;
         
         if(Math.abs(s.length() - node.data.toString().length()) == 1){ // the difference of their length is 1
-            ////
-        }
-        else if(s.length() == node.data.toString().length()){ // same length
-            int numberOfdifferentLetters = 0;
-            for (int i = 0; i < s.length(); i++) {
-                if(s.charAt(i) != node.data.toString().charAt(i)){
-                    numberOfdifferentLetters += 1;
+            String longerWord = s.length() > node.data.toString().length() ? s:node.data.toString();
+            String shorterWord = s.length() > node.data.toString().length() ? node.data.toString():s;
+            for (int i = 0; i < longerWord.length(); i++) {
+                String wordWithoutChar = longerWord.substring(0, i) + longerWord.substring(i + 1);
+                if (wordWithoutChar.equals(shorterWord)) {
+                    list.addToTail(node.data.toString());
                 }
             }
-            if(numberOfdifferentLetters == 1){
+        }
+        else if(s.length() == node.data.toString().length()){ // same length
+            int differentLetters = 0;
+            for (int i = 0; i < s.length(); i++) {
+                if(s.charAt(i) != node.data.toString().charAt(i)){
+                    differentLetters += 1;
+                }
+            }
+            if(differentLetters == 1){
                 list.addToTail(node.data.toString());
                 System.out.println(node.data.toString());
             }

@@ -1,21 +1,24 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TestClass {
     public static void main(String[] args) throws Exception{
         // Asking for the filename
         Scanner input = new Scanner(System.in);
-        // System.out.print("Enter filename> ");
-        // String fileName = input.next();
+        System.out.print("Enter filename> ");
+        String fileName = input.next();
         
         // creating the dictionary
-        Dictionary dictionary = new Dictionary();
+        try{
+        Dictionary dictionary = new Dictionary(new File(fileName));
 
         boolean saved = false;
         // Suggesting operations
         while(true){ // keep asking until the user chooses to save the file or exit
+            
             System.out.println("Type the number of the operation you want to do:");
             System.out.println("1. Adding a word into the dictionary.");
             System.out.println("2. Deleting a word from the dictionary.");
@@ -48,7 +51,10 @@ public class TestClass {
                 System.out.print("search for similar words>  ");
                 String word = input.next();
                 String[] array = dictionary.findSimilar(word);
-                System.out.println("Words similar to " + word + "are " + Arrays.toString(array));
+                if(array.length == 0)
+                    System.out.println("There are no words similar to ' " + word + " '");
+                else
+                    System.out.println("Words similar to " + word + " are " + Arrays.toString(array));
             }
 
             else if(option == 5){ // Save
@@ -77,7 +83,12 @@ public class TestClass {
             else{ // wrong option
                 System.out.println("Please choose a valid option.");
             }
+        
         }
+    }
+    catch(Exception ex){
+        System.out.println(ex);
+    }
 
     }
 }
