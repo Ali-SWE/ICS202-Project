@@ -60,10 +60,41 @@ public class Dictionary {
         }
     }
 
-    // public String[] findSimilar(String s){
+    public String[] findSimilar(String s){
+        SLL<String> list = new SLL<String>();
+        findSimilar(s, tree.root, list);
 
-    // }
+        // converting the SLL to array
+        String[] array = new String[list.size()];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = list.deleteFromHead();
+        }
+        return array;       
+    }
 
+    public void findSimilar(String s, BTNode node, SLL<String> list){
+        if(node == null)
+            return;
+        
+        if(Math.abs(s.length() - node.data.toString().length()) == 1){ // the difference of their length is 1
+            ////
+        }
+        else if(s.length() == node.data.toString().length()){ // same length
+            int numberOfdifferentLetters = 0;
+            for (int i = 0; i < s.length(); i++) {
+                if(s.charAt(i) != node.data.toString().charAt(i)){
+                    numberOfdifferentLetters += 1;
+                }
+            }
+            if(numberOfdifferentLetters == 1){
+                list.addToTail(node.data.toString());
+                System.out.println(node.data.toString());
+            }
+        }
+        findSimilar(s, node.right, list);
+        findSimilar(s, node.left, list);
+
+    }
     public void saveFile(String fileName){ 
         File newFile = new File(fileName);
         try(PrintWriter writer = new PrintWriter(newFile)){

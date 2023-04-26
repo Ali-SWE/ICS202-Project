@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class TestClass {
@@ -10,7 +11,7 @@ public class TestClass {
         // String fileName = input.next();
         
         // creating the dictionary
-        Dictionary dictionary = new Dictionary(new File("mydictionary.txt"));
+        Dictionary dictionary = new Dictionary();
 
         boolean saved = false;
         // Suggesting operations
@@ -45,7 +46,9 @@ public class TestClass {
 
             else if(option == 4){ // Searching for similar words
                 System.out.print("search for similar words>  ");
-                // dictionary.findSimilar(input.next());
+                String word = input.next();
+                String[] array = dictionary.findSimilar(word);
+                System.out.println("Words similar to " + word + "are " + Arrays.toString(array));
             }
 
             else if(option == 5){ // Save
