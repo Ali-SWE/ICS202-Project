@@ -1,0 +1,13 @@
+# Efficiency Text File #
+
+The Complexity of Each Method:
+
+1. { addWord(String s) } =>  O(log n) -> Insertion in AVL Tree is O(log n)
+
+2. { findWord(String s) } => O(log n) -> Searching in AVL Tree is O(log n) since AVL trees are always balanced
+
+3. { findSimilar(String s) } => O(n) -> Since they go over all elements in the AVL Tree
+
+4. { saveFile(String fileName) & writeDictionaryInFile(BTNode node,PrintWriter writer) } => O(n) ->
+Since they go over all elements in the AVL Tree
+
