@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.io.Writer;
 import java.util.Scanner;
 
 public class Dictionary {
@@ -21,20 +20,23 @@ public class Dictionary {
         Scanner fileScanner = new Scanner(file);
         while(fileScanner.hasNext()){
             String word = fileScanner.next();
-            if(!tree.search(word))
+            try{
                 tree.insertAVL(word);
+            }
+            catch(IllegalArgumentException ex){
+            }
         }
         System.out.println("\ndictionary loaded successfully.");
         
     }
 
     public void addWord(String s) throws WordAlreadyExistsException{
-        if(!findWord(s)){ // The word is not in the dictionary.
+        try{
             tree.insertAVL(s);
             System.out.println("\nword added successfully.");
         }
-        else{ // The word is already in the dictionary
-            throw new WordAlreadyExistsException("The word is already in the dictionary.");
+        catch(Exception ex){
+            System.out.println("The word is already in the dictionary.");
         }
     }
 
@@ -48,12 +50,12 @@ public class Dictionary {
     }
 
     public void deleteWord(String s) throws WordNotFoundException{
-        if(findWord(s)){ // The word is in the dictionary
+        try{ // The word is in the dictionary
             tree.deleteAVL(s);
             System.out.println("\nword deleted successfully.");
         }
-        else{ // // The word is not in the dictionary
-            throw new WordNotFoundException("word not found.");
+        catch(Exception ex){ // // The word is not in the dictionary
+            System.out.println("\nWord not found. ");
         }
     }
 

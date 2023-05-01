@@ -1,15 +1,24 @@
 # Efficiency Text File #
 
+This project is about a dictionary that allows users to do different operations such as adding, deleting, and searching.A suitable data structure that has been used is AVL tree. 
+
+
 The Complexity of Each Method:
 
-1. { addWord(String s) } =>  O(log n) -> Insertion in AVL Tree is O(log n)
+1. { Dictionary() } => Creating an empty dictionary costs O(1)
 
-2. { deleteWord(String s) } =>  O(log n) -> Deletion in AVL Tree is O(log n)
+2. { Dictionary(String s) } => Creating a dictionary containing single word is O(1)
 
-3. { findWord(String s) } => O(log n) -> Searching in AVL Tree is O(log n) since AVL trees are always balanced
+3. { Dictionary(File f) } =>  
 
-4. { findSimilar(String s) } => O(n) -> Since they go over all elements in the AVL Tree
+4. { addWord(String s) } =>  O(log n) -> Insertion in AVL Tree is O(log n)
 
-5. { saveFile(String fileName) & writeDictionaryInFile(BTNode node,PrintWriter writer) } => O(n) ->
+5. { deleteWord(String s) } =>  O(log n) -> Deletion in AVL Tree is O(log n)
+
+6. { findWord(String s) } => O(log n) -> Searching in AVL Tree is O(log n) since AVL trees are always balanced
+
+7. { findSimilar(String s) } => O(n) -> Since they go over all elements in the AVL Tree
+
+8. { saveFile(String fileName) & writeDictionaryInFile(BTNode node,PrintWriter writer) } => O(n) ->
 Since they go over all elements in the AVL Tree
 
