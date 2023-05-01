@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -10,34 +11,41 @@ public class TestClass {
         Scanner input = new Scanner(System.in);
         
         // offering type of dictionary
-        System.out.println("Type the number of the dictionary you want: ");
-        System.out.println("1. A dictionary with no words. ");
-        System.out.println("2. A dictionary with single word. ");
-        System.out.println("3. A dictionary from a file>  ");
-        int type = input.nextInt();
         
         // Creating a dictionary
         Dictionary dictionary;
         boolean saved = false;
         while(true){
-            if(type == 1){
-                dictionary = new Dictionary();
-                break;
-                
+            try{
+
+                System.out.println("Type the number of the dictionary you want: ");
+                System.out.println("1. A dictionary with no words. ");
+                System.out.println("2. A dictionary with single word. ");
+                System.out.println("3. A dictionary from a file>  ");
+                int type = input.nextInt();
+            
+                if(type == 1){
+                    dictionary = new Dictionary();
+                    break;
+                    
+                }
+                else if(type == 2){
+                    System.out.println("Add a word: ");
+                    dictionary = new Dictionary(input.next());
+                    break;       
+                }
+                else if(type == 3){
+                    System.out.print("Enter filename> ");
+                    String fileName = input.next();
+                    dictionary = new Dictionary(new File(fileName));
+                    break;
+                }
+                else{
+                    System.out.println("Choose a valid option, please.");
+                }
             }
-            else if(type == 2){
-                System.out.println("Add a word: ");
-                dictionary = new Dictionary(input.next());
-                break;       
-            }
-            else if(type == 3){
-                System.out.print("Enter filename> ");
-                String fileName = input.next();
-                dictionary = new Dictionary(new File(fileName));
-                break;
-            }
-            else{
-                System.out.println("Choose a valid option, please.");
+            catch(IOException ex){
+                System.out.println("This file does not exist.\n");
             }
         }
 
