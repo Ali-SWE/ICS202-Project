@@ -35,7 +35,7 @@ public class Dictionary {
             tree.insertAVL(s);
             System.out.println("\nword added successfully.");
         }
-        catch(WordAlreadyExistsException ex){
+        catch(Exception ex){
             System.out.println("The word is already in the dictionary.");
         }
     }
@@ -54,7 +54,7 @@ public class Dictionary {
             tree.deleteAVL(s);
             System.out.println("\nword deleted successfully.");
         }
-        catch(WordNotFoundException ex){ // // The word is not in the dictionary
+        catch(Exception ex){ // // The word is not in the dictionary
             System.out.println("\nWord not found. ");
         }
     }

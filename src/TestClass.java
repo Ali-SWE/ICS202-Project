@@ -57,8 +57,7 @@ public class TestClass {
                 System.out.println("2. Deleting a word from the dictionary.");
                 System.out.println("3. Searching for a word in the dictionary.");
                 System.out.println("4. Searching for similar words to a specific word.");
-                System.out.println("5. Save.");
-                System.out.println("6. Exit.");
+                System.out.println("5. Exit.");
                 int option = input.nextInt();
 
                 if(option == 1){ // Adding a word
@@ -118,13 +117,8 @@ public class TestClass {
                     }
                 }
 
-                else if(option == 5){ // Save
-                    System.out.print("Enter filename> ");
-                    dictionary.saveFile(input.next());
-                    saved = true;
-                }
 
-                else if(option == 6){ // Exit
+                else if(option == 5){ // Exit
                     if(!saved){
                         System.out.println("Save Updated Dictionary (Y/N)> ");
                         String choice = input.next();

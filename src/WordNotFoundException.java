@@ -1,6 +1,5 @@
-import java.util.NoSuchElementException;
 
-public class WordNotFoundException extends NoSuchElementException{
+public class WordNotFoundException extends Exception{
     public WordNotFoundException(String s){
         super(s);
     }
