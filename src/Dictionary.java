@@ -35,7 +35,7 @@ public class Dictionary {
             tree.insertAVL(s);
             System.out.println("\nword added successfully.");
         }
-        catch(Exception ex){
+        catch(WordAlreadyExistsException ex){
             System.out.println("The word is already in the dictionary.");
         }
     }
@@ -54,7 +54,7 @@ public class Dictionary {
             tree.deleteAVL(s);
             System.out.println("\nword deleted successfully.");
         }
-        catch(Exception ex){ // // The word is not in the dictionary
+        catch(WordNotFoundException ex){ // // The word is not in the dictionary
             System.out.println("\nWord not found. ");
         }
     }
@@ -94,7 +94,7 @@ public class Dictionary {
             }
             if(differentLetters == 1){
                 list.addToTail(node.data.toString());
-                System.out.println(node.data.toString());
+            
             }
         }
         findSimilar(s, node.right, list);

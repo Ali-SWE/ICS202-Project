@@ -1,4 +1,4 @@
-public class WordAlreadyExistsException extends Exception{
+public class WordAlreadyExistsException extends IllegalArgumentException{
     public WordAlreadyExistsException(String s){
         super(s);
     }
